@@ -74,3 +74,46 @@ function colisionsWithLeftPaddle() {
     }
 }
 
+function colisionsWithRightPaddle() {
+    if((x - ballRadius) >= 5 - (r_PaddleWidth + 5)){
+        if(y < r_PaddleY && y < r_PaddleY + r_PaddleHeight) 
+            dx = -dx;
+        else if ((x + ballRadius) >= 0) {
+            leftScore++;
+
+            // alert(Game Over)
+            x = canvas.width / 2;
+            y = canvas.height / 2;
+            dx = -dx;
+            dy = -dy;
+            // document.location.reload()
+        }
+    }
+}
+
+function computeCollisionswithWallsandPaddle() {
+    colisionsWithLeftPaddle();
+    colisionsWithRightPaddle();
+    if (((y - ballRadius) <= 0) || ((y + ballRadius) >= canvas.height)) {
+        dy = -dy;
+    }
+}
+
+// for left-hand side player
+let l_PaddleHeight = 80
+let l_PaddleWidth = 10
+let l_PaddleX = 5
+let l_PaddleY = canvas.height /  2 - l_PaddleHeight / 2
+
+function drawLeftPaddle() {
+    ctx.beginPath();
+    ctx.rect(l_PaddleX, l_PaddleY, l_PaddleWidth, l_PaddleHeight)
+    ctx.fillStyle = "green";
+    ctx.fill();
+    ctx.closePath();
+    if (leftDownPressed && l_PaddleY < canvas.height - l_PaddleHeight) {
+        l_PaddleY += 7;
+    } else if (leftUpPressed && l_PaddleY > 0) {
+        l_PaddleY -= 7;
+    }
+}
