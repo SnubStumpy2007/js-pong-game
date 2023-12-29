@@ -117,3 +117,23 @@ function drawLeftPaddle() {
         l_PaddleY -= 7;
     }
 }
+
+// for right-hand side player
+let r_PaddleHeight = 80
+let r_PaddleWidth = 10
+let r_PaddleX = canvas.width - (r_PaddleWidth + 5);
+let r_PaddleY = canvas.height / 2 - r_PaddleHeight / 2;
+
+function drawRightPaddle() {
+    ctx.beginPath()
+    ctx.rect(r_PaddleX, r_PaddleY, r_PaddleWidth, r_PaddleHeight)
+    ctx.fillStyle = "green";
+    ctx.fill();
+    ctx.closePath();
+    if (rightDownPressed && r_PaddleY < canvas.height - r_PaddleHeight) {
+        r_PaddleY += 7;
+    }
+    else if (rightUpPressed && r_PaddleY > 0) {
+        r_PaddleY -= 7;
+    }
+}
