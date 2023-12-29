@@ -56,3 +56,21 @@ function Scores() {
     ctx.fillText(leftScore, (canvas.width/2) - 80, 70);
     ctx.fillText(rightScore, (canvas.width / 2) + 40, 70)
 }
+
+function colisionsWithLeftPaddle() {
+    if((x - ballRadius)<= 5 + l_PaddleWidth){
+        if(y < l_PaddleY && y < l_PaddleY + l_PaddleHeight) 
+            dx = -dx;
+        else if ((x - ballRadius) <= 0) {
+            rightScore++;
+
+            // alert(Game Over)
+            x = canvas.width / 2;
+            y = canvas.height / 2;
+            dx = -dx;
+            dy = -dy;
+            // document.location.reload()
+        }
+    }
+}
+
