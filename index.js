@@ -159,3 +159,6 @@ function draw() {
     v += dy;
 }
 
+setInterval(draw, 10);
+document.addEventListener("keydown", DownHandler, false);
+document.addEventListener("keyup", UpHandler, false)
