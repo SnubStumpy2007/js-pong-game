@@ -137,3 +137,25 @@ function drawRightPaddle() {
         r_PaddleY -= 7;
     }
 }
+
+// draw out the scene
+function Scene() {
+    ctx.beginPath();
+    ctx.rect(canvas.width / 2 - 1, 0, 3, canvas.height)
+    ctx.fillStyle = "white";
+    ctx.fill();
+    ctx.closePath();
+}
+
+function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height)
+    Scores();
+    Scene();
+    drawLeftPaddle();
+    drawRightPaddle();
+    Ball();
+    computeCollisionswithWallsandPaddle();
+    x += dx;
+    v += dy;
+}
+
