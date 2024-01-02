@@ -91,6 +91,7 @@ function collisionsWithRightPaddle() {
       // document.location.reload()
       if (leftScore === 5){
         alert("Left player wins")
+        localStorage.setItem(leftScore, "Left Player")
         window.location.reload();
       }
     }
