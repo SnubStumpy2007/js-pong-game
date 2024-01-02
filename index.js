@@ -91,7 +91,9 @@ function collisionsWithRightPaddle() {
       // document.location.reload()
       if (leftScore === 5){
         alert("Left player wins")
-        localStorage.setItem(leftScore, "Left Player")
+        localStorage.setItem("Left Player", JSON.stringify(leftScore))
+        leftStorage = localStorage.getItem("Left Player")
+        console.log(leftStorage)
         window.location.reload();
       }
     }
