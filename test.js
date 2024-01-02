@@ -1,26 +1,24 @@
-// initial variables
-// using the Canvas API to draw graphics on the screen for the game
-const canvas = document.getElementById("board");
-let ctx = canvas.getContext("2d");
-let x = canvas.width / 2;
-let y = canvas.height - 30;
-let dx = 4;
-let dy = -4;
-let ballRadius = 10;
+var canvas = document.getElementById("board");
+var ctx = canvas.getContext("2d");
+var x = canvas.width / 2;
+var y = canvas.height - 30;
+var dx = 4;
+var dy = -4;
+var ballRadius = 10;
 
-// variables to handle the movement of paddles
-let leftUpPressed = false;
-let leftDownPressed = false;
-let rightUpPressed = false;
-let rightDownPressed = false;
+// varibles declared to handle the movement of paddles
+var leftUpPressed = false;
+var leftDownPressed = false;
+var rightUpPressed = false;
+var rightDownPressed = false;
 
-// functions to handle key events when buttons are pressed
 function DownHandler(e) {
   if (e.keyCode == 90) {
     leftUpPressed = true;
   } else if (e.keyCode == 83) {
     leftDownPressed = true;
-  } else if (e.keyCode == 38) {
+  }
+  if (e.keyCode == 38) {
     rightUpPressed = true;
   } else if (e.keyCode == 40) {
     rightDownPressed = true;
@@ -32,7 +30,8 @@ function UpHandler(e) {
     leftUpPressed = false;
   } else if (e.keyCode == 83) {
     leftDownPressed = false;
-  } if (e.keyCode == 38) {
+  }
+  if (e.keyCode == 38) {
     rightUpPressed = false;
   } else if (e.keyCode == 40) {
     rightDownPressed = false;
@@ -46,9 +45,8 @@ function Ball() {
   ctx.fill();
   ctx.closePath();
 }
-
-let leftScore = 0;
-let rightScore = 0;
+var leftScore = 0;
+var rightScore = 0;
 
 function Scores() {
   ctx.font = "80px Arial";
@@ -63,16 +61,13 @@ function collisionsWithLeftPaddle() {
     else if (x - ballRadius <= 0) {
       rightScore++;
 
-      // alert(Game Over)
+      //alert("Game Over");
       x = canvas.width / 2;
       y = canvas.height / 2;
       dx = -dx;
       dy = -dy;
-      // document.location.reload()
-      if (rightScore === 5) {
-        alert("Right Player Wins")
-        window.location.reload();
-      }
+
+      //document.location.reload();
     }
   }
 }
@@ -83,16 +78,13 @@ function collisionsWithRightPaddle() {
     else if (x + ballRadius >= canvas.width) {
       leftScore++;
 
-      // alert(Game Over)
+      //alert("Game Over");
       x = canvas.width / 2;
       y = canvas.height / 2;
       dx = -dx;
       dy = -dy;
-      // document.location.reload()
-      if (leftScore === 5){
-        alert("Left player wins")
-        window.location.reload();
-      }
+
+      //document.location.reload();
     }
   }
 }
@@ -105,12 +97,11 @@ function computeCollisionsWithWallsAndPaddle() {
   }
 }
 
-// for left-hand side player
-let l_PaddleHeight = 80;
-let l_PaddleWidth = 10;
-let l_PaddleX = 5;
-let l_PaddleY = canvas.height / 2 - l_PaddleHeight / 2;
-
+// For left-hand side player
+var l_PaddleHeight = 80;
+var l_PaddleWidth = 10;
+var l_PaddleX = 5;
+var l_PaddleY = canvas.height / 2 - l_PaddleHeight / 2;
 function drawLeftPaddle() {
   ctx.beginPath();
   ctx.rect(l_PaddleX, l_PaddleY, l_PaddleWidth, l_PaddleHeight);
@@ -124,12 +115,11 @@ function drawLeftPaddle() {
   }
 }
 
-// for right-hand side player
-let r_PaddleHeight = 80;
-let r_PaddleWidth = 10;
-let r_PaddleX = canvas.width - (r_PaddleWidth + 5);
-let r_PaddleY = canvas.height / 2 - r_PaddleHeight / 2;
-
+// For Right-hand side player
+var r_PaddleHeight = 80;
+var r_PaddleWidth = 10;
+var r_PaddleX = canvas.width - (r_PaddleWidth + 5);
+var r_PaddleY = canvas.height / 2 - r_PaddleHeight / 2;
 function drawRightPaddle() {
   ctx.beginPath();
   ctx.rect(r_PaddleX, r_PaddleY, r_PaddleWidth, r_PaddleHeight);
@@ -143,7 +133,6 @@ function drawRightPaddle() {
   }
 }
 
-// draw out the scene
 function Scene() {
   ctx.beginPath();
   ctx.rect(canvas.width / 2 - 1, 0, 3, canvas.height);
